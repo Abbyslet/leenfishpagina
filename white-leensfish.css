@@ -1,0 +1,1256 @@
+/* White presentation for the standalone LeensFish copy. */
+:root {
+  color-scheme: light;
+  --page: #ffffff;
+  --ink: #111111;
+}
+
+.leensfish-loader {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  opacity: 1;
+  transition: opacity 520ms ease, visibility 520ms ease;
+  overflow: hidden;
+}
+
+.leensfish-loader.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.leensfish-loader.is-leaving {
+  opacity: 0;
+}
+
+.leensfish-loader::before,
+.leensfish-loader::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.leensfish-loader::before {
+  width: min(78vw, 650px);
+  height: min(78vw, 650px);
+  border: 1px solid rgba(70, 78, 38, 0.18);
+  border-radius: 50%;
+  animation: leensfish-loader-orbit 1700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.leensfish-loader::after {
+  width: 100vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(70, 78, 38, 0.3), transparent);
+  animation: leensfish-loader-scan 1500ms ease-in-out both;
+}
+
+.leensfish-loader__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  width: min(76vw, 440px);
+  animation: leensfish-loader-enter 1250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), filter 700ms ease;
+}
+
+.leensfish-loader.is-leaving .leensfish-loader__inner {
+  transform: scale(1.08);
+  filter: blur(7px);
+}
+
+.leensfish-loader__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  object-fit: contain;
+  box-shadow: 0 24px 70px rgba(31, 39, 19, 0.18);
+  clip-path: inset(0 50% 0 50% round 2px);
+  animation: leensfish-loader-logo-reveal 1350ms 120ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: scale(1.12) rotate(-2deg);
+}
+
+.leensfish-loader__line {
+  display: block;
+  width: min(48vw, 180px);
+  height: 2px;
+  margin-top: 24px;
+  overflow: hidden;
+  background: #e8e8e8;
+  opacity: 0;
+  animation: leensfish-loader-label-in 500ms 900ms ease forwards;
+}
+
+.leensfish-loader__line::after {
+  display: block;
+  width: 42%;
+  height: 100%;
+  background: #111111;
+  content: "";
+  animation: leensfish-loader-progress 900ms ease-in-out infinite;
+}
+
+.leensfish-loader__label {
+  margin-top: 12px;
+  color: rgba(17, 17, 17, 0.56);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: leensfish-loader-label-in 500ms 900ms ease forwards;
+}
+
+@keyframes leensfish-loader-enter {
+  from { opacity: 0; transform: translateY(26px) scale(0.78); }
+  62% { opacity: 1; transform: translateY(-5px) scale(1.015); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes leensfish-loader-logo-reveal {
+  0% { clip-path: inset(0 50% 0 50% round 2px); transform: scale(1.12) rotate(-2deg); }
+  55% { clip-path: inset(0 7% 0 7% round 2px); transform: scale(1.02) rotate(0.5deg); }
+  100% { clip-path: inset(0 0 0 0 round 2px); transform: scale(1) rotate(0); }
+}
+
+@keyframes leensfish-loader-progress {
+  from { transform: translateX(-145%); }
+  to { transform: translateX(345%); }
+}
+
+@keyframes leensfish-loader-label-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes leensfish-loader-orbit {
+  from { opacity: 0; transform: scale(0.55) rotate(-35deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes leensfish-loader-scan {
+  from { opacity: 0; transform: translateY(-44vh); }
+  35% { opacity: 1; }
+  to { opacity: 0; transform: translateY(44vh); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leensfish-loader__inner,
+  .leensfish-loader__line::after,
+  .leensfish-loader__logo,
+  .leensfish-loader__line,
+  .leensfish-loader__label,
+  .leensfish-loader::before,
+  .leensfish-loader::after {
+    animation: none;
+  }
+
+  .leensfish-loader__logo { clip-path: none; transform: none; }
+}
+
+/* LeensFish flower reveal: the mark blooms first, then the wordmark settles in. */
+.leensfish-loader,
+.leensfish-loader.is-hidden {
+  background: #ffffff !important;
+  transition: background 1000ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms ease, visibility 700ms ease;
+}
+
+.leensfish-loader.is-bloomed {
+  background: #26321d !important;
+}
+
+.leensfish-loader::before,
+.leensfish-loader::after {
+  content: none;
+}
+
+.leensfish-loader__inner {
+  width: min(76vw, 480px);
+  min-height: 0;
+  animation: none;
+}
+
+.leensfish-loader__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(64vw, 390px);
+  aspect-ratio: 1;
+}
+
+.leensfish-loader__backdrop {
+  position: absolute;
+  inset: 9%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(231, 222, 187, 0.24) 0 12%, transparent 13%),
+    repeating-conic-gradient(from 0deg, rgba(138, 154, 99, 0.92) 0 12deg, rgba(57, 72, 39, 0.92) 12deg 24deg),
+    radial-gradient(circle, #9ba77b, #394a2e 66%, #1d2818);
+  box-shadow: 0 0 0 1px rgba(246, 239, 213, 0.22), 0 36px 100px rgba(11, 19, 7, 0.38);
+  opacity: 0;
+  transform: scale(0.62) rotate(-24deg);
+  transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leensfish-loader__backdrop::after {
+  position: absolute;
+  inset: 9%;
+  border: 1px solid rgba(246, 239, 213, 0.34);
+  border-radius: 50%;
+  content: "";
+}
+
+.leensfish-loader.is-bloomed .leensfish-loader__backdrop {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+
+.leensfish-loader__flower {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: min(42vw, 270px);
+  aspect-ratio: 1;
+}
+
+.leensfish-loader__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: none;
+  filter: drop-shadow(0 24px 28px rgba(15, 22, 10, 0.28));
+  animation: leensfish-flower-entry-settle 1900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: 50% 50%;
+}
+
+.leensfish-loader__wordmark {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  color: #ffffff;
+  font-family: "Inter Variable", "Inter", sans-serif;
+  font-size: clamp(2.25rem, 6vw, 4.25rem);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 0.9;
+  opacity: 0;
+  text-shadow: 0 4px 28px rgba(14, 21, 8, 0.44);
+  transform: translate(-50%, -44%) translateX(-90px) scale(0.76);
+  transition: opacity 420ms 90ms cubic-bezier(0.16, 1, 0.3, 1), transform 520ms 90ms cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.leensfish-loader.is-bloomed .leensfish-loader__wordmark {
+  opacity: 1;
+  transform: translate(-50%, -44%) translateX(0) scale(1);
+}
+
+.leensfish-loader__label {
+  position: relative;
+  z-index: 4;
+  margin-top: -28px;
+  color: rgba(17, 17, 17, 0.54);
+  transition: color 700ms ease;
+}
+
+.leensfish-loader.is-bloomed .leensfish-loader__label {
+  color: rgba(246, 239, 213, 0.66);
+}
+
+@keyframes leensfish-flower-spin {
+  0% { opacity: 0; transform: scale(0.08) rotate(-220deg); }
+  18% { opacity: 1; }
+  78% { opacity: 1; transform: scale(1.08) rotate(26deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes leensfish-flower-settle {
+  0% { transform: scale(1) rotate(0deg); }
+  54% { transform: scale(0.82) rotate(-3deg) translateY(-10px); }
+  100% { transform: scale(0.84) rotate(0deg) translateY(-7px); }
+}
+
+@keyframes leensfish-flower-entry-settle {
+  0% { opacity: 0; transform: scale(0.08) rotate(-180deg); }
+  18% { opacity: 1; }
+  72% { opacity: 1; transform: scale(0.84) rotate(360deg); }
+  100% { opacity: 1; transform: scale(0.84) rotate(360deg); }
+}
+
+@media (max-width: 620px) {
+  .leensfish-loader__stage { width: 78vw; }
+  .leensfish-loader__flower { width: 48vw; max-width: 230px; }
+  .leensfish-loader__wordmark { font-size: clamp(2rem, 10vw, 3.4rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leensfish-loader__backdrop,
+  .leensfish-loader__logo,
+  .leensfish-loader__wordmark {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .leensfish-loader__backdrop {
+    opacity: 1;
+    transform: none;
+  }
+
+  .leensfish-loader__logo {
+    transform: scale(0.84) translateY(-7px);
+  }
+
+  .leensfish-loader__wordmark {
+    opacity: 1;
+    transform: translate(-50%, -44%);
+  }
+}
+
+/* Clean white lockup: spinning flower on the left, wordmark on the right. */
+.leensfish-loader,
+.leensfish-loader.is-bloomed,
+.leensfish-loader.is-leaving {
+  background: #ffffff !important;
+}
+
+.leensfish-loader {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 820ms cubic-bezier(0.76, 0, 0.24, 1), visibility 0s linear 820ms;
+}
+
+.leensfish-loader.is-leaving {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-100%);
+  transition: transform 820ms cubic-bezier(0.76, 0, 0.24, 1), visibility 0s linear 820ms;
+}
+
+.leensfish-loader.is-hidden {
+  opacity: 1;
+  visibility: hidden;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+body.leensfish-loading .showcase {
+  opacity: 0;
+  transform: none;
+}
+
+body .showcase {
+  transition: none;
+}
+
+body.leensfish-ready .showcase {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.leensfish-loader.is-leaving {
+  opacity: 0;
+  visibility: visible;
+  transform: none;
+  transition: opacity 360ms ease;
+}
+
+.leensfish-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: none;
+}
+
+/* The page replaces the loader in ordered layers instead of fading away. */
+.leensfish-loader.is-leaving {
+  display: none !important;
+  opacity: 1 !important;
+  visibility: hidden !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+body.leensfish-ready .site-header {
+  animation: leensfish-header-in 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+body.leensfish-ready .lensfish-copy h1,
+body.leensfish-ready .lensfish-copy .lensfish-lead,
+body.leensfish-ready .lensfish-copy .lensfish-summary,
+body.leensfish-ready .lensfish-copy .lensfish-waitlist {
+  animation: leensfish-content-in 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+body.leensfish-ready .lensfish-copy h1 { animation-delay: 80ms; }
+body.leensfish-ready .lensfish-copy .lensfish-lead { animation-delay: 180ms; }
+body.leensfish-ready .lensfish-copy .lensfish-summary:nth-of-type(1) { animation-delay: 280ms; }
+body.leensfish-ready .lensfish-copy .lensfish-summary:nth-of-type(2) { animation-delay: 370ms; }
+body.leensfish-ready .lensfish-copy .lensfish-summary:nth-of-type(3) { animation-delay: 460ms; }
+body.leensfish-ready .lensfish-copy .lensfish-summary:nth-of-type(4) { animation-delay: 550ms; }
+body.leensfish-ready .lensfish-copy .lensfish-waitlist { animation-delay: 660ms; }
+
+body.leensfish-ready .lensfish-architecture {
+  animation: leensfish-image-in 720ms 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Keep the finished LeensFish lockup as the opening cover; the site scrolls below it. */
+body.leensfish-ready .leensfish-loader.is-persistent {
+  position: relative;
+  z-index: 0;
+  inset: auto;
+  display: grid !important;
+  width: 100%;
+  height: min(78vh, 760px);
+  min-height: 560px;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  pointer-events: none;
+  transition: none !important;
+}
+
+body.leensfish-ready .showcase {
+  position: relative;
+  z-index: auto;
+  padding-top: 0;
+  background: transparent !important;
+}
+
+body.leensfish-ready .lensfish-main {
+  background: #ffffff;
+}
+
+body.leensfish-ready .site-header {
+  position: fixed !important;
+  z-index: 1000 !important;
+  inset: 0 0 auto !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.06) !important;
+}
+
+body.leensfish-ready .site-header.is-scrolled {
+  background: #ffffff !important;
+  border-bottom-color: rgba(17, 17, 17, 0.12) !important;
+}
+
+body.leensfish-ready .site-header .brand,
+body.leensfish-ready .site-header .brand-name,
+body.leensfish-ready .site-header .primary-nav a,
+body.leensfish-ready .site-header .language-switcher,
+body.leensfish-ready .site-header .header-cta {
+  color: #111111 !important;
+}
+
+/* Simple editorial card: blue palette, rounded frame, text only. */
+.skip-link,
+.site-header,
+.lensfish-copy,
+.lensfish-hero::before,
+.lensfish-hero::after,
+.lensfish-architecture::before,
+.lensfish-architecture::after {
+  display: none !important;
+}
+
+.lensfish-hero {
+  display: grid;
+  align-items: center;
+  min-height: 100vh;
+  padding: 32px 20px !important;
+}
+
+.lensfish-hero {
+  background: #ffffff !important;
+}
+
+.lensfish-hero .lensfish-wrap {
+  width: min(100%, 920px);
+}
+
+.lensfish-architecture {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 0 clamp(44px, 7vw, 80px) !important;
+  transform: none !important;
+}
+
+.leensfish-text-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+  min-height: clamp(300px, 40vw, 450px);
+  overflow: hidden;
+  padding: clamp(24px, 4vw, 46px);
+  border-radius: 12px;
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.16) 0.7px, transparent 0.8px) 0 0 / 5px 5px repeat,
+    radial-gradient(rgba(35, 43, 20, 0.14) 0.7px, transparent 0.8px) 2px 3px / 7px 7px repeat,
+    radial-gradient(circle at 82% 18%, rgba(244, 235, 210, 0.5), transparent 23%),
+    linear-gradient(135deg, #252d19 0%, #596643 48%, #a5a778 100%);
+  background-blend-mode: soft-light, soft-light, screen, normal;
+  box-shadow: none;
+  color: #ffffff;
+  margin-bottom: clamp(48px, 8vw, 96px);
+}
+
+.leensfish-text-card::before,
+.leensfish-text-card::after {
+  display: none !important;
+}
+
+.leensfish-text-card::before {
+  right: -14%;
+  bottom: -40%;
+  width: 58%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  box-shadow: 0 0 0 34px rgba(255, 255, 255, 0.05), 0 0 0 68px rgba(255, 255, 255, 0.035);
+}
+
+.leensfish-text-card::after {
+  top: 0;
+  right: 18%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  transform: rotate(24deg);
+}
+
+.leensfish-text-card__eyebrow,
+.leensfish-text-card__note {
+  position: relative;
+  z-index: 1;
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.leensfish-text-card__eyebrow { color: rgba(255, 255, 255, 0.7); }
+.leensfish-text-card__note { color: rgba(248, 240, 218, 0.78); }
+
+.leensfish-text-card__body {
+  position: relative;
+  z-index: 1;
+  max-width: 650px;
+}
+
+.leensfish-text-card__body h1 {
+  margin: 0;
+  color: #f7efd9;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(3.4rem, 9vw, 7.6rem);
+  font-weight: 500;
+  letter-spacing: -0.085em;
+  line-height: 0.9;
+}
+
+.leensfish-text-card__body p {
+  max-width: 420px;
+  margin: 22px 0 0;
+  color: rgba(247, 239, 217, 0.9);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.leensfish-text-card__coming-soon {
+  position: relative;
+  z-index: 1;
+  color: #f7efd9;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.leensfish-mobile-logo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 6px;
+  object-fit: contain;
+}
+
+.leensfish-mobile-brand {
+  display: block;
+  margin: 0 0 8px;
+  color: #354326;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+.lensfish-copy h1 {
+  display: none;
+}
+
+.lensfish-copy .lensfish-lead {
+  display: none;
+}
+
+.lensfish-copy {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.lensfish-copy[data-reveal],
+.lensfish-architecture[data-reveal] {
+  display: block !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Minimal header: AlcaNox mark left, Contact right. */
+.site-header {
+  display: block !important;
+  position: relative !important;
+  inset: auto !important;
+  z-index: 10 !important;
+  width: 100%;
+  padding: 14px 20px !important;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1) !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.site-header .header-inner {
+  justify-content: space-between !important;
+  width: min(100%, 920px) !important;
+  margin: 0 auto !important;
+}
+
+.site-header .brand {
+  display: inline-flex !important;
+  color: #111111 !important;
+}
+
+.site-header .brand-name,
+.site-header .header-cta {
+  color: #111111 !important;
+}
+
+.site-header .primary-nav,
+.site-header .language-switcher,
+.site-header .menu-toggle {
+  display: none !important;
+}
+
+.site-header .header-cta {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding: 8px 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.leensfish-title-block {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(14px, 2.5vw, 32px);
+  margin: 0 0 24px;
+  color: #111111;
+  text-align: center;
+}
+
+.leensfish-title-block h1 {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(2.1rem, 5vw, 3.8rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.92;
+}
+
+.leensfish-title-block p {
+  margin: 0;
+  color: #111111;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(2.1rem, 5vw, 3.8rem);
+  font-weight: 450;
+  letter-spacing: -0.07em;
+  line-height: 0.98;
+}
+
+@media (max-width: 620px) {
+  .leensfish-title-block {
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+}
+
+.leensfish-clean-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 64px;
+  margin: 0;
+  padding: 14px clamp(18px, 3.2vw, 52px);
+  border-bottom: 0;
+  background: #ffffff;
+  color: #111111;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.leensfish-clean-header__brand,
+.leensfish-clean-header__contact {
+  display: inline-flex;
+  align-items: center;
+  color: #111111;
+  text-decoration: none;
+}
+
+.leensfish-clean-header__brand {
+  gap: 9px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.leensfish-clean-header__brand img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.leensfish-clean-header__contact {
+  gap: 7px;
+  font-size: 0.76rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+}
+
+.leensfish-clean-header__contact span {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.leensfish-clean-header__brand:hover,
+.leensfish-clean-header__contact:hover {
+  color: #596643;
+}
+
+.leensfish-platforms {
+  margin-top: clamp(72px, 10vw, 118px);
+  padding-top: clamp(28px, 4vw, 42px);
+}
+
+.leensfish-feature-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+  gap: clamp(34px, 5vw, 64px);
+  align-items: start;
+}
+
+.leensfish-text-only {
+  width: min(100%, 730px);
+  margin: 0 auto;
+}
+
+.leensfish-text-only .lensfish-copy {
+  display: block !important;
+  max-width: none;
+}
+
+.lensfish-origin-text {
+  margin-top: 34px !important;
+  padding-top: 18px;
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+/* Let the legal note continue below the fold instead of clipping the page. */
+html,
+body {
+  min-height: 100%;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.showcase {
+  overflow: visible !important;
+}
+
+.lensfish-hero {
+  min-height: auto !important;
+  align-items: start !important;
+  padding-bottom: clamp(160px, 20vw, 280px) !important;
+}
+
+.leensfish-feature-layout .lensfish-copy {
+  display: block !important;
+  max-width: none;
+}
+
+.leensfish-phone-column {
+  padding-top: 12px;
+  color: #111111;
+  text-align: center;
+}
+
+.leensfish-phone-column .leensfish-device--phone {
+  width: min(100%, 236px);
+  margin: 0 auto;
+}
+
+.leensfish-phone-column h3 {
+  margin: 22px 0 0;
+  color: #111111;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.leensfish-phone-column p {
+  max-width: 250px;
+  margin: 8px auto 0;
+  color: rgba(17, 17, 17, 0.66);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.leensfish-device__soon {
+  margin-top: 8px;
+  color: #596643;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.leensfish-platforms__grid {
+  grid-template-columns: minmax(0, 440px);
+  justify-content: start;
+}
+
+@media (max-width: 760px) {
+  .leensfish-feature-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .leensfish-phone-column {
+    justify-self: center;
+    width: min(100%, 300px);
+    padding-top: 0;
+  }
+}
+
+.leensfish-platforms__intro > span {
+  color: #596643;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.leensfish-platforms__intro h2 {
+  max-width: 580px;
+  margin: 12px 0 0;
+  color: #111111;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 1;
+}
+
+.leensfish-platforms__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 6vw, 74px);
+  align-items: end;
+  margin-top: 46px;
+}
+
+.leensfish-platform-card {
+  color: #111111;
+}
+
+.leensfish-device {
+  display: grid;
+  place-items: center;
+  background: #dfe2d2;
+  box-shadow: none;
+}
+
+.leensfish-device--phone {
+  width: min(100%, 190px);
+  aspect-ratio: 0.56;
+  margin: 0 auto;
+  padding: 8px;
+  border: 7px solid #20241b;
+  border-radius: 22px;
+  background: #ffffff;
+}
+
+.leensfish-device--desktop {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1.48;
+  padding: 13px;
+  border: 7px solid #20241b;
+  border-radius: 10px;
+}
+
+.leensfish-device--desktop::after {
+  width: 28%;
+  height: 8px;
+  margin-top: 13px;
+  background: #20241b;
+  content: "";
+}
+
+.leensfish-device__screen {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background: #ffffff !important;
+  color: #3f4d2e;
+}
+
+.leensfish-file-label {
+  margin-bottom: 7px;
+  color: #777d64;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.leensfish-mobile-heading {
+  display: flex;
+  justify-content: space-between;
+  color: #354326;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.56rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+}
+
+.leensfish-mobile-heading b {
+  color: #7b895f;
+  font-size: 0.48rem;
+  font-weight: 750;
+}
+
+.leensfish-mobile-status {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  padding: 13px 0 10px;
+  color: #354326;
+}
+
+.leensfish-mobile-status strong {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 2.3rem;
+  font-weight: 500;
+  letter-spacing: -0.1em;
+  line-height: 0.82;
+}
+
+.leensfish-mobile-status span {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.48rem;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+  line-height: 1.25;
+}
+
+.leensfish-mobile-footer {
+  margin-top: 3px;
+  color: #7b895f;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.48rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.leensfish-mobile-metrics {
+  display: grid;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.leensfish-mobile-metric {
+  padding: 6px 7px 7px;
+  background: #f3f1e8;
+}
+
+.leensfish-mobile-metric > div {
+  display: flex;
+  justify-content: space-between;
+  color: #596643;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.43rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+}
+
+.leensfish-mobile-metric > div b {
+  color: #354326;
+  font-size: 0.47rem;
+}
+
+.leensfish-bars {
+  display: flex;
+  align-items: end;
+  gap: 2px;
+  height: 15px;
+  margin-top: 5px;
+}
+
+.leensfish-bars em {
+  display: block;
+  flex: 1;
+  height: var(--h);
+  background: #91a172;
+}
+
+.leensfish-bars em:nth-child(even) { background: #b5b990; }
+
+.leensfish-server-bar {
+  display: block;
+  height: 4px;
+  margin-top: 7px;
+  background: #d8dcc9;
+}
+
+.leensfish-server-bar em {
+  display: block;
+  width: 86%;
+  height: 100%;
+  background: #596643;
+}
+
+.leensfish-file {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 9px;
+  background: #e3e4d5;
+  color: #354326;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.leensfish-file b {
+  color: #7e8969;
+  font-weight: 600;
+}
+
+.leensfish-platform-card h3 {
+  margin: 22px 0 0;
+  color: #111111;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.leensfish-platform-card p {
+  max-width: 330px;
+  margin: 8px 0 0;
+  color: rgba(17, 17, 17, 0.66);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 620px) {
+  .leensfish-platforms__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .leensfish-device--desktop {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 620px) {
+  .leensfish-text-card { min-height: 280px; }
+  .leensfish-text-card__body h1 { font-size: clamp(3.2rem, 17vw, 5rem); }
+}
+
+@keyframes leensfish-header-in {
+  from { opacity: 0; transform: translateY(-18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes leensfish-content-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes leensfish-image-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-14px) scale(0.96); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.leensfish-loader__inner {
+  width: min(90vw, 720px);
+}
+
+.leensfish-loader__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 4vw, 54px);
+  width: 100%;
+  min-height: 230px;
+  aspect-ratio: auto;
+}
+
+.leensfish-loader__backdrop {
+  display: none;
+}
+
+.leensfish-loader__flower {
+  flex: 0 0 auto;
+  width: min(27vw, 220px);
+}
+
+.leensfish-loader__wordmark {
+  position: relative;
+  top: auto;
+  left: auto;
+  flex: 0 0 auto;
+  color: #111111;
+  font-size: clamp(2.35rem, 6vw, 4.65rem);
+  letter-spacing: -0.075em;
+  opacity: 0;
+  text-shadow: none;
+  transform: translateX(-28px) scale(0.94);
+  transition: opacity 420ms 90ms cubic-bezier(0.16, 1, 0.3, 1), transform 520ms 90ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leensfish-loader.is-bloomed .leensfish-loader__wordmark {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.leensfish-loader__label,
+.leensfish-loader.is-bloomed .leensfish-loader__label {
+  margin-top: 16px;
+  color: rgba(17, 17, 17, 0.52);
+}
+
+@media (max-width: 620px) {
+  .leensfish-loader__stage {
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+  }
+
+  .leensfish-loader__flower {
+    width: min(46vw, 210px);
+  }
+
+  .leensfish-loader__wordmark {
+    font-size: clamp(2.1rem, 11vw, 3.5rem);
+    transform: translateY(-14px) scale(0.94);
+  }
+
+  .leensfish-loader.is-bloomed .leensfish-loader__wordmark {
+    transform: translateY(0) scale(1);
+  }
+}
+
+html,
+body,
+.showcase,
+.lensfish-hero {
+  background: #ffffff !important;
+  color: var(--ink);
+}
+
+.site-header {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom-color: rgba(17, 17, 17, 0.12) !important;
+  box-shadow: 0 10px 32px rgba(17, 17, 17, 0.06);
+}
+
+.site-header .brand,
+.site-header .primary-nav a,
+.site-header .language-switcher,
+.site-header .header-cta {
+  color: #111111 !important;
+}
+
+.site-header .header-cta {
+  border-color: rgba(17, 17, 17, 0.24) !important;
+}
+
+.lensfish-hero::before {
+  background:
+    radial-gradient(circle at 50% 55%, rgba(224, 232, 246, 0.75), transparent 42%),
+    linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%) !important;
+}
+
+.lensfish-hero::after {
+  color: rgba(17, 17, 17, 0.92) !important;
+  text-shadow: none !important;
+}
+
+.lensfish-copy h1,
+.lensfish-lead,
+.lensfish-summary,
+.lensfish-summary + .lensfish-summary,
+.lensfish-summary strong,
+.lensfish-detail-title {
+  color: #111111 !important;
+}
+
+.lensfish-architecture::before,
+.lensfish-architecture::after {
+  color: rgba(17, 17, 17, 0.48) !important;
+  text-shadow: none !important;
+}
+
+.lensfish-waitlist {
+  background: #111111 !important;
+  color: #ffffff !important;
+}
+
+.lensfish-waitlist:hover,
+.lensfish-waitlist:focus-visible {
+  background: #343434 !important;
+}

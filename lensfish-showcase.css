@@ -1,0 +1,660 @@
+:root {
+  color-scheme: light;
+  --page: #fafaf8;
+  --ink: #101011;
+  --soft: rgba(16, 16, 17, 0.62);
+  --quiet: rgba(16, 16, 17, 0.42);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--page); }
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+.skip-link,
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link:focus {
+  z-index: 1100;
+  top: 12px;
+  left: 12px;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 10px 14px;
+  clip: auto;
+  background: var(--ink);
+  color: var(--page);
+}
+
+.showcase { min-height: 0; overflow: clip; }
+.lensfish-wrap { width: min(100%, 860px); margin: 0 auto; }
+
+.lensfish-hero {
+  position: relative;
+  min-height: 0;
+  padding: clamp(120px, 12vw, 148px) 24px clamp(62px, 8vw, 92px);
+  background: var(--page);
+  isolation: isolate;
+}
+
+.lensfish-hero .lensfish-wrap {
+  position: relative;
+}
+
+.lensfish-architecture {
+  position: absolute;
+  z-index: 0;
+  top: 22px;
+  left: 50%;
+  display: block;
+  width: min(82vw, 590px);
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.lensfish-card-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.08;
+  filter: grayscale(1) brightness(0.2);
+}
+
+.lensfish-copy {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.lensfish-copy h1 {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Inter Variable", "Inter", sans-serif;
+  font-size: clamp(3.4rem, 5.3vw, 5.7rem);
+  font-weight: 510;
+  letter-spacing: -0.022em;
+  line-height: 0.98;
+}
+
+.lensfish-lead {
+  max-width: 700px;
+  margin: 28px auto 0;
+  color: rgba(16, 16, 17, 0.9);
+  font-family: "Inter Variable", "Inter", sans-serif;
+  font-size: clamp(1.4rem, 2.1vw, 2.15rem);
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 1.05;
+}
+
+.lensfish-lead em { color: rgba(16, 16, 17, 0.48); font-style: normal; }
+.lensfish-summary {
+  max-width: 730px;
+  margin: 24px auto 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  letter-spacing: -0.02em;
+  line-height: 1.58;
+  text-align: left;
+}
+
+.lensfish-summary + .lensfish-summary { margin-top: 16px; color: var(--ink); }
+.lensfish-summary strong { color: var(--ink); font-weight: 700; }
+.lensfish-origin-text { font-style: italic; }
+
+.lensfish-detail-title {
+  max-width: 730px;
+  margin: 42px auto 0;
+  color: var(--ink);
+  font-family: "Inter Variable", "Inter", sans-serif;
+  font-size: clamp(1.45rem, 2vw, 1.92rem);
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  line-height: 1;
+  text-align: left;
+}
+.lensfish-detail-title + .lensfish-summary { margin-top: 22px; }
+.lensfish-statement { color: rgba(16, 16, 17, 0.78); }
+.lensfish-waitlist {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 34px;
+  padding: 13px 16px 13px 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--page);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.lensfish-waitlist b { color: rgba(250, 250, 248, 0.7); font-size: 1.05rem; font-weight: 500; }
+.lensfish-waitlist:hover,
+.lensfish-waitlist:focus-visible { background: #d9d9d6; transform: translateY(-1px); }
+
+[data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 680ms cubic-bezier(0.16, 1, 0.3, 1), transform 780ms cubic-bezier(0.16, 1, 0.3, 1); }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 980px) {
+  .lensfish-hero { min-height: 0; padding: 118px 24px 72px; }
+  .lensfish-architecture { top: 16px; width: min(88vw, 550px); }
+  .lensfish-copy { max-width: 730px; margin: 0 auto; }
+}
+
+@media (max-width: 620px) {
+  .lensfish-hero { padding: 108px 22px 54px; }
+  .lensfish-architecture { top: 10px; width: min(112vw, 440px); }
+  .lensfish-copy h1 { font-size: clamp(3.2rem, 15vw, 4.5rem); }
+  .lensfish-lead { margin-top: 25px; font-size: 1.38rem; }
+  .lensfish-summary { font-size: 0.91rem; line-height: 1.56; }
+  .lensfish-detail-title { margin-top: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: 0.01ms !important; }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+html,
+body,
+.showcase {
+  background: #000;
+}
+
+.lensfish-hero {
+  padding: clamp(100px, 11vw, 142px) 24px clamp(78px, 9vw, 124px);
+  background: #000;
+}
+
+.lensfish-wrap {
+  width: min(100%, 1120px);
+}
+
+.lensfish-editorial-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  background: #ecebe7;
+  box-shadow: 0 28px 82px rgba(0, 0, 0, 0.42);
+}
+
+.lensfish-editorial-visual {
+  position: relative;
+  min-height: clamp(290px, 29vw, 360px);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(72% 135% at 16% 116%, rgba(100, 151, 86, 0.38), transparent 57%),
+    radial-gradient(58% 104% at 82% 12%, rgba(196, 198, 206, 0.21), transparent 63%),
+    linear-gradient(112deg, #070807 0%, #191a1b 45%, #101112 74%, #27282b 100%);
+}
+
+.lensfish-editorial-visual::before,
+.lensfish-editorial-visual::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.lensfish-editorial-visual::before {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 68px 100%,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 100% 52px;
+  opacity: 0.21;
+  mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+}
+
+.lensfish-editorial-visual::after {
+  background:
+    radial-gradient(ellipse 42% 64% at 50% 55%, transparent 0%, rgba(0, 0, 0, 0.13) 62%, rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.22), transparent 40%, rgba(0, 0, 0, 0.36));
+}
+
+.lensfish-terrain {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 54%;
+  opacity: 0.78;
+  mix-blend-mode: screen;
+}
+
+.lensfish-editorial-architecture {
+  position: absolute;
+  z-index: 1;
+  bottom: -48%;
+  left: 50%;
+  width: min(34vw, 330px);
+  max-width: 44%;
+  opacity: 0.22;
+  filter: grayscale(1) contrast(1.08);
+  transform: translateX(-50%);
+}
+
+.lensfish-editorial-nav {
+  position: absolute;
+  z-index: 4;
+  top: 24px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 28px);
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(8, 9, 9, 0.64);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+  color: rgba(245, 245, 245, 0.66);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.59rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.lensfish-editorial-wordmark {
+  color: #b5d68b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  text-transform: none;
+}
+
+.lensfish-editorial-nav i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9abe71;
+  box-shadow: 0 0 0 4px rgba(154, 190, 113, 0.1), 0 0 14px rgba(154, 190, 113, 0.52);
+}
+
+.lensfish-editorial-signal {
+  position: absolute;
+  z-index: 4;
+  right: clamp(22px, 4vw, 48px);
+  bottom: 22px;
+  margin: 0;
+  color: rgba(243, 244, 241, 0.64);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.lensfish-editorial-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.65fr);
+  gap: clamp(34px, 7vw, 112px);
+  align-items: end;
+  padding: clamp(38px, 5.5vw, 66px) clamp(28px, 5.4vw, 66px) clamp(38px, 5vw, 60px);
+  color: #111;
+}
+
+.lensfish-editorial-kicker {
+  margin: 0 0 16px;
+  color: rgba(22, 22, 22, 0.52);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.lensfish-editorial-body h1 {
+  max-width: 660px;
+  margin: 0;
+  color: #111;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.45rem, 6.5vw, 6.6rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.77;
+}
+
+.lensfish-editorial-body h1 em {
+  color: #111;
+  font-weight: 400;
+}
+
+.lensfish-editorial-detail {
+  max-width: 340px;
+  padding-bottom: 3px;
+}
+
+.lensfish-editorial-detail > p {
+  margin: 0;
+  color: rgba(17, 17, 17, 0.76);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(0.76rem, 0.9vw, 0.88rem);
+  font-weight: 620;
+  line-height: 1.52;
+}
+
+.lensfish-editorial-detail .lensfish-waitlist {
+  min-height: 41px;
+  margin-top: 25px;
+  padding: 0 15px 0 17px;
+  border-radius: 5px;
+  background: #181818;
+  color: #f7f6f1;
+  font-size: 0.59rem;
+  letter-spacing: 0.09em;
+  text-transform: none;
+}
+
+.lensfish-editorial-detail .lensfish-waitlist:hover,
+.lensfish-editorial-detail .lensfish-waitlist:focus-visible {
+  background: #3f7040;
+  color: #fff;
+  transform: none;
+}
+
+.lensfish-documentation {
+  max-width: 900px;
+  margin: 48px auto 0;
+  padding: clamp(34px, 5vw, 60px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: #ecebe7;
+  text-align: left;
+}
+
+.lensfish-documentation .lensfish-lead,
+.lensfish-documentation .lensfish-summary,
+.lensfish-documentation .lensfish-detail-title {
+  max-width: 720px;
+}
+
+.lensfish-documentation .lensfish-lead {
+  margin-top: 0;
+  text-align: left;
+}
+
+@media (max-width: 760px) {
+  .lensfish-hero {
+    padding: 88px 18px 70px;
+  }
+
+  .lensfish-editorial-card {
+    border-radius: 14px;
+  }
+
+  .lensfish-editorial-visual {
+    min-height: 250px;
+  }
+
+  .lensfish-editorial-architecture {
+    width: min(52vw, 250px);
+    max-width: 55%;
+  }
+
+  .lensfish-editorial-nav {
+    top: 16px;
+    gap: 10px;
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 0.47rem;
+  }
+
+  .lensfish-editorial-nav span:nth-of-type(2) {
+    display: none;
+  }
+
+  .lensfish-editorial-signal {
+    right: 18px;
+    bottom: 16px;
+    font-size: 0.46rem;
+  }
+
+  .lensfish-editorial-body {
+    grid-template-columns: 1fr;
+    gap: 31px;
+    padding: 34px 24px 38px;
+  }
+
+  .lensfish-editorial-body h1 {
+    font-size: clamp(3.3rem, 15vw, 4.8rem);
+  }
+
+  .lensfish-editorial-detail {
+    max-width: none;
+  }
+
+  .lensfish-documentation {
+    margin-top: 30px;
+    padding: 32px 24px;
+    border-radius: 12px;
+  }
+}
+
+html,
+body,
+.showcase {
+  background: #fafaf8;
+}
+
+.lensfish-hero {
+  min-height: 0;
+  padding: clamp(280px, 30vw, 360px) 24px clamp(62px, 8vw, 92px);
+  overflow: hidden;
+  background: #fafaf8;
+}
+
+.lensfish-hero::before,
+.lensfish-hero::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.lensfish-hero::before {
+  z-index: 0;
+  height: clamp(225px, 24vw, 285px);
+  background:
+    linear-gradient(180deg, rgba(20, 160, 222, 0.04), transparent 58%, rgba(34, 134, 196, 0.1)),
+    url("assets/lensfish-star-code-v2.webp") center / cover no-repeat;
+}
+
+.lensfish-hero::after {
+  z-index: 1;
+  height: clamp(225px, 24vw, 285px);
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.98);
+  content: "LeensFish";
+  font-family: Inter, "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(2.2rem, 4.7vw, 4.35rem);
+  font-weight: 700;
+  letter-spacing: -0.075em;
+  line-height: 1;
+  text-shadow: 0 2px 20px rgba(55, 90, 192, 0.2);
+}
+
+.lensfish-hero .lensfish-wrap {
+  width: min(100%, 860px);
+}
+
+.lensfish-architecture {
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: clamp(225px, 24vw, 285px);
+  transform: translateX(-50%);
+}
+
+.lensfish-card-logo {
+  display: none;
+}
+
+.lensfish-architecture::before,
+.lensfish-architecture::after {
+  position: absolute;
+  top: 12%;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: clamp(0.66rem, 0.95vw, 0.9rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.16;
+  opacity: 0.78;
+  text-shadow: 0 1px 14px rgba(255, 255, 255, 0.26);
+  white-space: pre;
+}
+
+.lensfish-architecture::before {
+  left: 16%;
+  content: "async\A  function\A    scan()\A  {\A    return\A  signal;\A}";
+}
+
+.lensfish-architecture::after {
+  top: 38%;
+  right: 16%;
+  content: "const\A  threat =\A    await\A  inspect();\A  true;";
+}
+
+.lensfish-copy {
+  z-index: 3;
+  text-align: left;
+}
+
+.lensfish-copy h1 {
+  color: #101011;
+  font-family: "Inter Variable", "Inter", sans-serif;
+  font-size: clamp(4rem, 7vw, 7rem);
+  font-weight: 510;
+  letter-spacing: -0.022em;
+  line-height: 0.98;
+}
+
+.lensfish-lead {
+  max-width: 760px;
+  margin: 29px 0 0;
+  font-family: "Inter Variable", "Inter", sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.062em;
+  line-height: 0.98;
+}
+
+.lensfish-lead em {
+  color: rgba(16, 16, 17, 0.72);
+  font-style: italic;
+}
+
+.lensfish-summary,
+.lensfish-detail-title {
+  max-width: 730px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.lensfish-detail-title {
+  margin-top: 48px;
+}
+
+.lensfish-waitlist {
+  border-radius: 5px;
+  text-transform: none;
+}
+
+@media (max-width: 760px) {
+  .lensfish-hero {
+    padding: 246px 22px 54px;
+  }
+
+  .lensfish-hero::before,
+  .lensfish-hero::after {
+    height: 196px;
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .lensfish-architecture {
+    top: 0;
+    width: 100vw;
+    height: 196px;
+    transform: translateX(-50%);
+  }
+
+  .lensfish-architecture::before,
+  .lensfish-architecture::after {
+    font-size: 0.62rem;
+    letter-spacing: 0;
+  }
+
+  .lensfish-architecture::before {
+    left: 10%;
+  }
+
+  .lensfish-architecture::after {
+    right: 10%;
+  }
+
+  .lensfish-copy h1 {
+    font-size: clamp(3.8rem, 17vw, 5.4rem);
+  }
+
+  .lensfish-lead {
+    font-size: clamp(1.65rem, 8vw, 2.2rem);
+  }
+}
+
+.lensfish-hero::before {
+  background:
+    url("assets/lensfish-retro-flower-v1.webp") center 62% / min(235px, 26vw) auto no-repeat,
+    radial-gradient(circle at 50% 58%, rgba(226, 218, 157, 0.52), transparent 42%),
+    linear-gradient(112deg, #20241b 0%, #66724a 44%, #aaa875 72%, #343726 100%);
+}
+
+.lensfish-hero::after {
+  color: rgba(255, 250, 228, 0.96);
+  text-shadow: 0 2px 18px rgba(25, 30, 15, 0.35);
+}
+
+@media (max-width: 760px) {
+  .lensfish-hero::before {
+    background-size: 170px auto, auto, auto;
+  }
+}
